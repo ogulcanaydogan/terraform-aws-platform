@@ -28,6 +28,7 @@ docs/      repo documentation
 | Observability | Log metric alarm | Log group, metric filter, alarm + SNS | Low | [templates/cloudwatch-metric-alarm](templates/cloudwatch-metric-alarm) |
 | Security | IAM examples | IAM user/role policy examples | Low | [templates/iam-examples](templates/iam-examples) |
 | Search | OpenSearch VPC | OpenSearch domain with VPC access | Medium | [templates/opensearch-vpc](templates/opensearch-vpc) |
+| Reference | Web app platform | VPC + ECR + RDS Postgres + ECS Fargate behind ALB (end-to-end) | High | [templates/platform-web-app](templates/platform-web-app) |
 
 ## Usage
 1. Choose a template and review its README.
