@@ -11,10 +11,10 @@ variable "enable_versioning" {
 
 variable "lifecycle_rules" {
   type = list(object({
-    id      = string
-    enabled = bool
-    expiration_days = optional(number)
-    transition_days = optional(number)
+    id                       = string
+    enabled                  = bool
+    expiration_days          = optional(number)
+    transition_days          = optional(number)
     transition_storage_class = optional(string)
   }))
   default     = []

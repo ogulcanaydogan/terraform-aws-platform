@@ -25,7 +25,7 @@ variable "dlq_max_receive_count" {
 variable "tags" {
   type        = map(string)
   description = "Tags."
-  default     = {
+  default = {
     project     = "terraform-templates"
     environment = "dev"
     owner       = "example"

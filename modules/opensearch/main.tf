@@ -42,10 +42,10 @@ resource "aws_opensearch_domain" "this" {
     Version = "2012-10-17"
     Statement = [
       {
-        Effect = "Allow"
+        Effect    = "Allow"
         Principal = { AWS = data.aws_caller_identity.current.arn }
-        Action = "es:*"
-        Resource = "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.name}/*"
+        Action    = "es:*"
+        Resource  = "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.name}/*"
       }
     ]
   })

@@ -84,17 +84,17 @@ resource "aws_iam_role" "task" {
 }
 
 module "ecs" {
-  source            = "../../modules/ecs"
-  name              = local.name
+  source             = "../../modules/ecs"
+  name               = local.name
   subnet_ids         = module.vpc.private_subnet_ids
   security_group_ids = [module.service_sg.security_group_id]
-  container_image   = var.container_image
-  container_port    = var.container_port
+  container_image    = var.container_image
+  container_port     = var.container_port
   execution_role_arn = aws_iam_role.execution.arn
   task_role_arn      = aws_iam_role.task.arn
   log_group_name     = aws_cloudwatch_log_group.ecs.name
   target_group_arn   = module.alb.target_group_arn
-  tags              = local.tags
+  tags               = local.tags
 }
 
 data "aws_iam_policy_document" "ecs_assume_role" {

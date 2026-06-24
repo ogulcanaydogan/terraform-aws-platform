@@ -25,7 +25,7 @@ variable "instance_type" {
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to resources."
-  default     = {
+  default = {
     project     = "terraform-templates"
     environment = "dev"
     owner       = "example"

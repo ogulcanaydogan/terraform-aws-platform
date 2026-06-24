@@ -24,7 +24,7 @@ variable "alarm_email" {
 variable "tags" {
   type        = map(string)
   description = "Tags."
-  default     = {
+  default = {
     project     = "terraform-templates"
     environment = "dev"
     owner       = "example"
