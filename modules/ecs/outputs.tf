@@ -5,5 +5,5 @@ output "cluster_arn" {
 
 output "service_arn" {
   description = "Service ARN."
-  value       = aws_ecs_service.this.arn
+  value       = aws_ecs_service.this.id
 }

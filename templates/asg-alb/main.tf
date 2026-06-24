@@ -68,9 +68,9 @@ data "aws_ami" "amazon_linux" {
 }
 
 resource "aws_launch_template" "this" {
-  name_prefix   = "${local.name}-lt-"
-  image_id      = data.aws_ami.amazon_linux.id
-  instance_type = var.instance_type
+  name_prefix            = "${local.name}-lt-"
+  image_id               = data.aws_ami.amazon_linux.id
+  instance_type          = var.instance_type
   vpc_security_group_ids = [module.app_sg.security_group_id]
 
   user_data = base64encode(<<-EOT

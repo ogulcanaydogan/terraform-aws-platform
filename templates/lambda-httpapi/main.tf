@@ -21,14 +21,14 @@ resource "aws_iam_role_policy_attachment" "basic" {
 }
 
 module "lambda" {
-  source            = "../../modules/lambda"
-  name              = local.name
-  handler           = "index.handler"
-  runtime           = "nodejs20.x"
-  role_arn           = aws_iam_role.lambda.arn
-  filename          = data.archive_file.lambda.output_path
-  source_code_hash  = data.archive_file.lambda.output_base64sha256
-  tags              = local.tags
+  source           = "../../modules/lambda"
+  name             = local.name
+  handler          = "index.handler"
+  runtime          = "nodejs20.x"
+  role_arn         = aws_iam_role.lambda.arn
+  filename         = data.archive_file.lambda.output_path
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  tags             = local.tags
 }
 
 resource "aws_apigatewayv2_api" "this" {
@@ -38,10 +38,10 @@ resource "aws_apigatewayv2_api" "this" {
 }
 
 resource "aws_apigatewayv2_integration" "this" {
-  api_id             = aws_apigatewayv2_api.this.id
-  integration_type   = "AWS_PROXY"
-  integration_uri    = module.lambda.invoke_arn
-  integration_method = "POST"
+  api_id                 = aws_apigatewayv2_api.this.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = module.lambda.invoke_arn
+  integration_method     = "POST"
   payload_format_version = "2.0"
 }
 

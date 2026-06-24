@@ -33,7 +33,7 @@ variable "egress_rules" {
     protocol    = string
     cidr_blocks = list(string)
   }))
-  default     = [{
+  default = [{
     description = "All outbound"
     from_port   = 0
     to_port     = 0

@@ -24,12 +24,12 @@ data "aws_ami" "amazon_linux" {
 }
 
 module "ssm_role" {
-  source                 = "../../modules/iam"
-  name                   = "${local.name}-ssm-role"
-  assume_role_policy     = data.aws_iam_policy_document.ec2_assume_role.json
-  managed_policy_arns    = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
+  source                  = "../../modules/iam"
+  name                    = "${local.name}-ssm-role"
+  assume_role_policy      = data.aws_iam_policy_document.ec2_assume_role.json
+  managed_policy_arns     = ["arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"]
   create_instance_profile = true
-  tags                   = local.tags
+  tags                    = local.tags
 }
 
 data "aws_iam_policy_document" "ec2_assume_role" {
@@ -81,15 +81,15 @@ module "instance_sg" {
 }
 
 module "docker_instance" {
-  source                    = "../../modules/ec2"
-  name                      = "${local.name}-instance"
-  ami_id                    = data.aws_ami.amazon_linux.id
-  instance_type             = var.instance_type
-  subnet_id                 = data.aws_subnets.default.ids[0]
-  security_group_ids        = [module.instance_sg.security_group_id]
-  iam_instance_profile      = module.ssm_role.instance_profile_name
+  source                      = "../../modules/ec2"
+  name                        = "${local.name}-instance"
+  ami_id                      = data.aws_ami.amazon_linux.id
+  instance_type               = var.instance_type
+  subnet_id                   = data.aws_subnets.default.ids[0]
+  security_group_ids          = [module.instance_sg.security_group_id]
+  iam_instance_profile        = module.ssm_role.instance_profile_name
   associate_public_ip_address = true
-  user_data = <<-EOT
+  user_data                   = <<-EOT
               #!/bin/bash
               dnf update -y
               dnf install -y docker
@@ -98,5 +98,5 @@ module "docker_instance" {
               curl -L https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
               chmod +x /usr/local/bin/docker-compose
               EOT
-  tags = local.tags
+  tags                        = local.tags
 }
